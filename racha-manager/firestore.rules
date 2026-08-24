@@ -19,7 +19,8 @@ service cloud.firestore {
     match /users/{uid} {
       allow read, create, update: if signedIn() && request.auth.uid == uid;
       match /rachas/{rachaId} {
-        allow read, create, update, delete: if signedIn() && request.auth.uid == uid;
+        allow read, create, update: if signedIn() && request.auth.uid == uid;
+        allow delete: if signedIn() && (request.auth.uid == uid || owner(rachaId));
       }
     }
     match /invites/{code} {
@@ -50,7 +51,8 @@ service cloud.firestore {
             && getAfter(/databases/$(database)/documents/rachas/$(rachaId)).data.ownerUid == request.auth.uid
           )
         );
-        allow update, delete: if owner(rachaId);
+        allow update: if owner(rachaId);
+        allow delete: if owner(rachaId) || (signedIn() && uid == request.auth.uid);
       }
       match /data/{documentId} {
         allow read: if member(rachaId);
