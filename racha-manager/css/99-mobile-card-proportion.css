@@ -1,0 +1,86 @@
+
+@media (max-width: 640px){
+  .player-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
+    --elenco-card-height:auto;
+    --elenco-photo-content-top:48vw;
+    --elenco-bottom-shadow-start:72%;
+    --elenco-ovr-shadow-width:42%;
+  }
+
+  .player-grid .player-card{
+    width:100%;
+    min-width:0;
+    min-height:0;
+    height:auto;
+    aspect-ratio:1 / 1.78;
+    padding:clamp(11px,3vw,16px) clamp(9px,2.5vw,14px);
+  }
+
+  .player-grid .player-card.has-card-photo{
+    --card-photo-content-top:var(--elenco-photo-content-top);
+    --photo-extra-height:11vw;
+    padding-top:var(--card-photo-content-top);
+  }
+
+  .player-grid .card-player-photo{
+    top:clamp(9px,2.6vw,16px);
+    width:100%;
+    max-width:100%;
+  }
+
+  .player-grid .player-overall{
+    top:clamp(8px,2.5vw,11px);
+    left:clamp(8px,2.8vw,12px);
+  }
+  .player-grid .player-overall b{font-size:clamp(24px,7vw,31px)}
+  .player-grid .player-overall span{font-size:clamp(6px,1.9vw,8px);margin-top:3px}
+  .player-grid .p-nick{font-size:clamp(17px,5vw,21px)}
+  .player-grid .p-name{font-size:clamp(9px,2.8vw,12px)}
+  .player-grid .player-attributes{
+    grid-template-columns:repeat(2,max-content);
+    column-gap:clamp(13px,4vw,24px);
+    row-gap:clamp(4px,1.4vw,6px);
+    margin-top:clamp(5px,1.8vw,14px);
+    font-size:clamp(13px,4vw,17px);
+  }
+  .player-grid .player-attributes b{font-size:clamp(18px,5.7vw,24px)}
+  .player-grid .player-attributes em{font-size:clamp(7px,2.3vw,10px)}
+
+  
+  .pd-summary.pd-summary-themed{
+    width:100%;
+    min-width:0;
+    min-height:0;
+    height:auto;
+    aspect-ratio:auto;
+    padding:clamp(16px,4.6vw,22px) clamp(13px,4vw,18px);
+  }
+
+  .pd-summary .pd-overall{
+    top:clamp(10px,3.2vw,13px)!important;
+    left:clamp(11px,3.7vw,15px)!important;
+  }
+  .pd-summary .pd-overall b{font-size:clamp(32px,10vw,40px)}
+  .pd-summary .pd-overall span{font-size:clamp(7px,2.3vw,9px)}
+  .pd-summary .pd-overall em{font-size:clamp(8px,2.5vw,10px)}
+  .pd-summary.pd-summary-themed .mvp-photo,
+  .pd-summary.pd-summary-themed .mvp-fb{
+    width:clamp(78px,24vw,96px);
+    height:clamp(78px,24vw,96px);
+  }
+  .pd-summary.pd-summary-themed .mvp-name{font-size:clamp(23px,7vw,28px)}
+  .pd-summary.pd-summary-themed .mvp-real{font-size:clamp(11px,3.2vw,13px)}
+  .pd-summary.pd-summary-themed .player-attributes{
+    column-gap:clamp(16px,5vw,24px);
+    row-gap:clamp(4px,1.5vw,6px);
+  }
+  .pd-summary.pd-summary-themed .player-attributes b{font-size:clamp(20px,6vw,24px)}
+}
+
+@media (max-width: 360px){
+  .player-grid{gap:8px}
+  .player-grid .player-card{aspect-ratio:1 / 1.84}
+  .player-grid{--elenco-photo-content-top:49vw}
+}

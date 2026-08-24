@@ -1,0 +1,59 @@
+{
+  "index_size": 27217,
+  "source_size": 767291,
+  "css_files": [
+    "00-foundation.css",
+    "10-elenco.css",
+    "20-rodadas.css",
+    "30-rankings-recordes.css",
+    "40-podio-mes.css",
+    "50-perfil-titulos.css",
+    "60-patentes-temas.css"
+  ],
+  "js_files": [
+    "js/core/app-state.js",
+    "js/core/loading-guard.js",
+    "js/features/auth-data.js",
+    "js/features/backgrounds.js",
+    "js/features/months-profile.js",
+    "js/features/players.js",
+    "js/features/rankings-trophies.js",
+    "js/features/records.js",
+    "js/features/rounds.js",
+    "js/services/firebase-adapter.js",
+    "js/ui/navigation-music.js"
+  ],
+  "vendor_files": [
+    "firebase-app-compat.js",
+    "firebase-auth-compat.js",
+    "firebase-firestore-compat.js",
+    "firebase-storage-compat.js"
+  ],
+  "inline_style_remaining": false,
+  "main_inline_js_remaining": false,
+  "loadAll_in_backgrounds": true,
+  "css_exact": true,
+  "js_exact": true,
+  "vendor_hashes": {
+    "firebase-app-compat.js": {
+      "source": "24a1fd90a9424647636669f59013201ba385eff82a58f88c76a7d400d4d71139",
+      "copy": "24a1fd90a9424647636669f59013201ba385eff82a58f88c76a7d400d4d71139",
+      "same": true
+    },
+    "firebase-auth-compat.js": {
+      "source": "277f6ef70525168247921e7a51fe995ecc66f9c3cf56c97f0d2bc262f74b5906",
+      "copy": "277f6ef70525168247921e7a51fe995ecc66f9c3cf56c97f0d2bc262f74b5906",
+      "same": true
+    },
+    "firebase-firestore-compat.js": {
+      "source": "25133ac64bef210c19384ed72eafdec440c27c02a6b48e9d2b6b48bf7b00ad04",
+      "copy": "25133ac64bef210c19384ed72eafdec440c27c02a6b48e9d2b6b48bf7b00ad04",
+      "same": true
+    },
+    "firebase-storage-compat.js": {
+      "source": "ee9154a1c0f4c15cea65693f3e2beb2ee03dbee58a58f8f77282ccd47d54fd56",
+      "copy": "ee9154a1c0f4c15cea65693f3e2beb2ee03dbee58a58f8f77282ccd47d54fd56",
+      "same": true
+    }
+  }
+}

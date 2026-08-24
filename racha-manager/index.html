@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Racha Manager Comunidade</title>
+<meta name="description" content="Gerencie jogadores, rodadas, rankings, conquistas e estatísticas do seu racha de futsal.">
+<meta name="theme-color" content="#071b0f">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Racha Manager">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+<meta property="og:title" content="Racha Manager">
+<meta property="og:description" content="Gerencie jogadores, rodadas, rankings, conquistas e estatísticas do seu racha de futsal.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://racha-manager.netlify.app/">
+<meta property="og:image" content="https://racha-manager.netlify.app/assets/racha-manager-social.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Logo do Racha Manager">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Racha Manager">
+<meta name="twitter:description" content="Gerencie jogadores, rodadas, rankings, conquistas e estatísticas do seu racha de futsal.">
+<meta name="twitter:image" content="https://racha-manager.netlify.app/assets/racha-manager-social.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/00-foundation.css">
+<link rel="stylesheet" href="css/05-multi-tenant.css">
+<link rel="stylesheet" href="css/10-elenco.css">
+<link rel="stylesheet" href="css/20-rodadas.css">
+<link rel="stylesheet" href="css/30-rankings-recordes.css">
+<link rel="stylesheet" href="css/40-podio-mes.css?v=6">
+<link rel="stylesheet" href="css/50-perfil-titulos.css">
+<link rel="stylesheet" href="css/60-patentes-temas.css">
+<link rel="stylesheet" href="css/99-mobile-card-proportion.css">
+</head>
+<body>
+<div class="tenant-portal active" id="tenantPortal">
+  <div class="tenant-shell">
+    <div class="tenant-brand"><div class="tenant-logo">RM</div><div><h1>Racha Manager</h1><p>Comunidade · cada racha no seu espaço</p></div></div>
+    <div class="tenant-view active" data-tenant-view="auth"><h2>Bem-vindo</h2><p>Entre na sua conta ou crie uma gratuitamente para organizar e participar de rachas.</p><div class="tenant-actions two"><button class="btn btn-primary" id="btnShowLogin">Entrar</button><button class="btn btn-ghost" id="btnShowRegister">Criar conta</button></div></div>
+    <div class="tenant-view" data-tenant-view="login"><h2>Entrar</h2><p>Acesse os rachas dos quais você participa.</p><div class="tenant-field"><label>E-mail</label><input type="email" id="tenantLoginEmail" autocomplete="email"></div><div class="tenant-field"><label>Senha</label><input type="password" id="tenantLoginPassword" autocomplete="current-password"></div><div class="tenant-actions two"><button class="btn btn-ghost" data-back-tenant>Voltar</button><button class="btn btn-primary" id="btnTenantLogin">Entrar</button></div></div>
+    <div class="tenant-view" data-tenant-view="register"><h2>Criar conta</h2><p>Seu perfil poderá participar de mais de um racha.</p><div class="tenant-field"><label>Seu nome</label><input type="text" id="tenantRegisterName" maxlength="80"></div><div class="tenant-field"><label>E-mail</label><input type="email" id="tenantRegisterEmail" autocomplete="email"></div><div class="tenant-field"><label>Senha</label><input type="password" id="tenantRegisterPassword" minlength="6" autocomplete="new-password"></div><div class="tenant-actions two"><button class="btn btn-ghost" data-back-tenant>Voltar</button><button class="btn btn-primary" id="btnTenantRegister">Criar minha conta</button></div></div>
+    <div class="tenant-view" data-tenant-view="workspaces"><h2>Meus rachas</h2><p>Escolha um racha, crie um novo ou use o convite recebido.</p><div class="tenant-workspace-list" id="tenantWorkspaceList"></div><div class="tenant-divider">Criar um racha</div><div class="tenant-field"><label>Nome do racha</label><input type="text" id="tenantRachaName" maxlength="60" placeholder="Ex: Racha de sexta"></div><button class="btn btn-primary" id="btnCreateRacha">Criar racha</button><div class="tenant-divider">Entrar por convite</div><div class="tenant-field"><label>Código do convite</label><input type="text" id="tenantInviteCode" maxlength="10" autocomplete="off" placeholder="Ex: K8P4MX2Q"></div><button class="btn btn-ghost" id="btnJoinRacha">Entrar com convite</button></div>
+    <div class="tenant-error" id="tenantError"></div>
+  </div>
+</div>
+<div class="wrap">
+  <header>
+    <div class="kicker">futsal &middot; racha semanal</div>
+    <h1>Racha <span>Manager</span></h1>
+    <div class="subtitle" id="headerSub">Carregando dados...</div>
+    <div class="save-status" id="saveStatus"></div>
+    <div class="auth-bar" id="authBar">
+      <span class="auth-label" id="authLabel">Modo visualização — só o organizador pode editar.</span>
+      <button class="link-btn" id="btnOpenLogin">Entrar como organizador</button>
+      <button class="link-btn" id="btnChangePassword" style="display:none;">Trocar senha</button>
+      <button class="link-btn" id="btnLogout" style="display:none;color:var(--coral);">Sair</button>
+      <button class="link-btn install-app-btn" id="btnInstallApp" type="button">Instalar no celular</button>
+    </div>
+    <div class="tenant-current"><div class="tenant-current-label"><b id="activeRachaName">Racha</b><small id="activeRachaRole">Carregando acesso</small></div><button class="link-btn" id="btnSwitchRacha" type="button">Trocar de racha</button><button class="link-btn" id="btnManageRacha" type="button">Pessoas e convite</button></div>
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="elenco"><span class="num">01</span>Elenco</button>
+      <button class="tab-btn" data-tab="rodada"><span class="num">02</span>Rodada</button>
+      <button class="tab-btn" data-tab="geral"><span class="num">03</span>Geral</button>
+      <button class="tab-btn" data-tab="mes"><span class="num">04</span>Mês</button>
+      <button class="tab-btn" data-tab="musicas"><span class="num">05</span>Músicas</button>
+      <button class="tab-btn admin-only is-hidden" data-tab="fundos"><span class="num">06</span>Fundos</button>
+    </nav>
+  </header>
+
+  
+  <section class="view active" id="view-elenco">
+    <h2 class="section-title">Elenco</h2>
+    <p class="section-sub">Todo mundo que já jogou o racha. Toque num jogador para ver os recordes pessoais.</p>
+    <div class="elenco-toolbar">
+      <button class="btn btn-primary admin-only is-hidden" id="btnAddPlayer">+ Novo jogador</button>
+      <button class="btn btn-ghost" id="btnStartComparison">⇄ Comparar jogadores</button>
+    </div>
+    <div class="elenco-card-height-control admin-only is-hidden">
+      <div class="elenco-card-control-field"><label for="elencoCardHeight">Altura dos cards</label><input type="range" id="elencoCardHeight" min="320" max="680" step="10" value="440"><output id="elencoCardHeightValue">440 px</output></div>
+      <div class="elenco-card-control-field"><label for="elencoBottomShadowReach">Alcance inferior</label><input type="range" id="elencoBottomShadowReach" min="0" max="100" step="1" value="28"><output id="elencoBottomShadowReachValue">28%</output></div>
+      <div class="elenco-card-control-field"><label for="elencoOvrShadowReach">Sombra lateral</label><input type="range" id="elencoOvrShadowReach" min="45" max="100" step="1" value="100"><output id="elencoOvrShadowReachValue">100%</output></div>
+      <div class="elenco-card-control-field"><label for="elencoOvrShadowWidth">Largura lateral</label><input type="range" id="elencoOvrShadowWidth" min="45" max="220" step="1" value="80"><output id="elencoOvrShadowWidthValue">80 px</output></div>
+      <div class="elenco-card-appearance-actions"><button type="button" class="btn btn-primary btn-sm" id="btnSaveCardAppearance">Salvar aparência</button><button type="button" class="btn btn-danger btn-sm" id="btnDiscardCardAppearance">Descartar</button></div>
+    </div>
+    <div id="bonusRulesPanel"></div>
+    <div id="playerSortBar"></div>
+    <div class="player-grid" id="playerGrid"></div>
+  </section>
+
+  
+  <section class="view" id="view-rodada">
+    <h2 class="section-title">Rodada da semana</h2>
+    <p class="section-sub">Registre gols, assistências e nota de cada um. Deixe em branco quem não jogou.</p>
+    <div class="empty" id="roundLoginNotice" style="display:none;">Somente o organizador logado pode lançar uma rodada nova. As rodadas já registradas continuam visíveis abaixo pra todo mundo.</div>
+    <div id="roundCreateWrap">
+      <div id="teamPlannerWrap"></div>
+      <div class="round-header">
+        <div class="field"><label>Identificação</label><input type="text" id="roundLabel" placeholder="Ex: Rodada 12"></div>
+        <div class="field"><label>Data</label><input type="date" id="roundDate"></div>
+      </div>
+      <div id="roundSortBar"></div>
+      <div id="roundEditNotice" class="empty" style="display:none;margin-bottom:14px;padding:12px 16px;text-align:left;">
+        ✏️ Editando <b id="roundEditingLabel"></b>.
+      </div>
+      <div id="roundEntriesWrap"></div>
+      <div style="margin-top:18px;display:flex;gap:9px;align-items:center;"><button class="btn btn-primary" id="btnSaveRound">Salvar rodada</button><button class="btn btn-danger" id="btnDiscardRoundEdit" style="display:none;">Descartar edição</button></div>
+    </div>
+    <div class="rounds-list" id="publishedTeamPlansList"></div>
+    <div id="roundsSortBar"></div>
+    <div class="rounds-list" id="roundsList"></div>
+  </section>
+
+  
+  <section class="view" id="view-geral">
+    <h2 class="section-title">Estatísticas gerais</h2>
+    <p class="section-sub">Artilharia e garçonagem acumuladas desde o início do racha. Isso aqui nunca reseta.</p>
+    <div id="geralTableWrap"></div>
+  </section>
+
+  
+  <section class="view" id="view-mes">
+    <h2 class="section-title">Mês atual</h2>
+    <p class="section-sub">Contagem do período atual pro MVP, artilheiro e garçom do mês — fecha sozinho no dia configurado, ou você pode fechar na hora quando quiser. Cada mês fechado vira uma "temporada" com histórico próprio, que fica listada mais abaixo e pode ser editada ou apagada.</p>
+    <div class="period-bar">
+      <span>Contando desde <b id="periodSince">—</b></span>
+      <button class="btn btn-danger btn-sm admin-only is-hidden" id="btnResetMonth">Fechar mês agora</button>
+    </div>
+    <div class="month-config admin-only is-hidden" id="monthConfigWrap">
+      <label>Dia do mês em que o fechamento automático deve acontecer</label>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <input type="number" id="monthStartDayInput" min="1" max="31" style="width:80px;">
+        <button class="btn btn-ghost btn-sm" id="btnSaveMonthStartDay">Salvar</button>
+      </div>
+      <label style="margin-top:16px;">Ajustar manualmente a data de início do período atual (dia, mês e ano)</label>
+      <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+        <input type="date" id="customPeriodStartInput">
+        <button class="btn btn-ghost btn-sm" id="btnCustomPeriodStart">Ajustar data</button>
+      </div>
+    </div>
+    <div id="lastMonthWrap"></div>
+    <details class="bonus-config admin-only" id="monthAppearanceConfig">
+      <summary>🎨 Aparência do mês encerrado · abrir</summary>
+      <div class="bonus-grid" style="margin-top:12px;">
+        <label>Altura do card <input type="range" id="monthCardHeight" min="300" max="700" value="340"><b id="monthCardHeightValue">340 px</b></label>
+        <label>Largura do card <input type="range" id="monthCardWidth" min="220" max="900" value="900"><b id="monthCardWidthValue">Automática</b></label>
+        <label>Largura máxima da foto <input type="range" id="monthCardPhotoWidth" min="160" max="440" value="300"><b id="monthCardPhotoWidthValue">300 px</b></label>
+        <label>Espaço antes do nome <input type="range" id="monthCardContentOffset" min="0" max="220" value="78"><b id="monthCardContentOffsetValue">78 px</b></label>
+        <label>Sombra vertical padrão <input type="range" id="monthCardShadow" min="0" max="100" value="86"><b id="monthCardShadowValue">86%</b></label>
+      </div>
+      <div class="bonus-rules-actions" style="margin-top:14px;">
+        <button type="button" class="btn btn-primary btn-sm" id="btnSaveMonthAppearance">Salvar alterações</button>
+        <button type="button" class="btn btn-ghost btn-sm" id="btnDiscardMonthAppearance">Descartar</button>
+        <button type="button" class="btn btn-danger btn-sm" id="btnResetMonthAppearance">Restaurar padrão</button>
+      </div>
+      <div class="section-sub" style="margin:10px 0 0;">Os ajustes individuais de enquadramento e sombra ficam no perfil do jogador, em Editar.</div>
+    </details>
+    <div id="mvpWrap"></div>
+    <div id="mesTableWrap"></div>
+    <div class="title-row"><div class="table-title">Meses fechados (temporadas)</div></div>
+    <p class="section-sub" style="margin-top:-8px;">Cada mês fechado guarda as rodadas daquele período (elas ficam trancadas na aba Rodada, agrupadas embaixo do mês) e libera os troféus dele. Editar muda quais rodadas pertencem ao mês (as datas); apagar remove o mês E as rodadas dele (gols, assistências e troféus inclusos); reabrir desfaz o fechamento — se houver um mês fechado logo depois, as rodadas passam pra ele, senão elas voltam a contar como período em andamento.</p>
+    <div id="monthsList" class="rounds-list"></div>
+  </section>
+
+
+  
+  <section class="view admin-only is-hidden" id="view-fundos">
+    <h2 class="section-title">Personalização de fundos</h2>
+    <p class="section-sub">Defina fundos para cada raridade e também para jogadores que ainda não conquistaram nenhum pódio ou raridade. O andamento altera apenas a aura/contorno e mantém o fundo da raridade já conquistada.</p>
+    <div class="rarity-bg-manager">
+      <div class="rarity-bg-manager-grid">
+        <div class="field"><label>Raridade / estado</label><select id="rarityBgTier"><option value="none">Sem conquista / raridade</option><option value="bronze">Bronze</option><option value="silver">Prata</option><option value="gold">Ouro</option><option value="prismatic">Prismática</option><option value="collector">Colecionador</option><option value="goat">GOAT</option><option value="cosmic">Cosmic</option></select></div>
+        <div class="field"><label>Local de aplicação</label><select id="rarityBgContext"><option value="player">Cards do elenco</option><option value="ranking">Linhas dos rankings</option><option value="record">Recordes dentro e fora do perfil</option><option value="month">Mês encerrado: card inteiro</option><option value="month-current">Mês encerrado: bloco Em andamento</option><option value="month-achievement">Mês encerrado: bloco Conquista oficial</option><option value="month-header">Mês encerrado: cabeçalho</option><option value="month-player">Mês encerrado: área do jogador</option><option value="profile-main">Perfil: somente o card principal</option><option value="profile">Perfil: todos os blocos</option><option value="all">Aplicar a mesma imagem em todos</option></select></div>
+        <div class="field"><label>Arquivo de imagem</label><input type="file" id="rarityBgFile" accept="image/png,image/jpeg,image/webp"></div>
+        <div class="field"><label>Ou URL da imagem</label><input type="text" id="rarityBgUrl" placeholder="https://.../fundo.png"></div>
+        <div class="field"><label>Largura da imagem <b id="rarityBgScaleXValue">100%</b></label><input type="range" id="rarityBgScaleX" min="20" max="300" value="100"></div>
+        <div class="field"><label>Altura da imagem <b id="rarityBgScaleYValue">100%</b></label><input type="range" id="rarityBgScaleY" min="20" max="300" value="100"></div>
+        <div class="field"><label>Posição horizontal <b id="rarityBgPosXValue">50%</b></label><input type="range" id="rarityBgPosX" min="-50" max="150" value="50"></div>
+        <div class="field"><label>Posição vertical <b id="rarityBgPosYValue">50%</b></label><input type="range" id="rarityBgPosY" min="-50" max="150" value="50"></div>
+        <div class="field"><label>Força da imagem <b id="rarityBgOpacityValue">85%</b></label><input type="range" id="rarityBgOpacity" min="15" max="100" value="85"></div>
+      </div>
+      <div class="rarity-bg-preview-shell"><div class="rarity-bg-preview-label" id="rarityBgPreviewLabel">Prévia</div><div class="rarity-bg-preview preview-player" id="rarityBgPreview"><div class="rarity-bg-preview-content" id="rarityBgPreviewContent">CARD DO ELENCO</div></div></div>
+      <div class="rarity-bg-status" id="rarityBgStatus">Nenhum fundo salvo para esta combinação.</div>
+      <div class="rarity-bg-manager-actions"><button type="button" class="btn btn-primary btn-sm" id="btnSaveRarityBg">Salvar fundo</button><button type="button" class="btn btn-ghost btn-sm" id="btnLoadRarityBg">Carregar salvo</button><button type="button" class="btn btn-danger btn-sm" id="btnRemoveRarityBg">Remover fundo</button></div>
+      <div class="rarity-bg-saved" id="rarityBgSaved"></div>
+    </div>
+  </section>
+
+  
+  <section class="view" id="view-musicas">
+    <h2 class="section-title">Músicas do racha</h2>
+    <p class="section-sub">Monte playlists, arraste para reorganizar e escolha entre tocar na ordem ou aleatoriamente. Os arquivos enviados pelo organizador ficam na nuvem e podem tocar em qualquer dispositivo.</p>
+    <div id="musicLoginNotice" class="empty" style="display:none;">Somente o organizador pode alterar músicas e playlists.</div>
+    <div class="music-layout">
+      <div class="music-panel">
+        <h3>Biblioteca</h3>
+        <div id="musicManageLibrary">
+          <div class="music-form" id="musicAddForm">
+            <input id="musicTitleInput" type="text" placeholder="Nome da música">
+            <input id="musicFileInput" type="file" accept="audio/*,video/mp4,.mp4" style="display:none;">
+            <button class="btn btn-ghost btn-sm" type="button" id="btnChooseMusicFile">Escolher arquivo</button>
+            <button class="btn btn-primary btn-sm" type="button" id="btnAddMusic">Adicionar música</button>
+          </div>
+          <div class="section-sub" style="margin:-4px 0 12px;">Escolha um arquivo de áudio ou MP4 do aparelho. O sistema reproduzirá o som do arquivo.</div>
+        </div>
+        <div id="musicLibraryList" class="music-list"></div>
+      </div>
+      <div class="music-panel">
+        <h3>Playlists</h3>
+        <div id="musicManagePlaylists">
+          <div class="music-form" style="grid-template-columns:1fr auto;">
+            <input id="playlistNameInput" type="text" placeholder="Nome da playlist">
+            <button class="btn btn-ghost btn-sm" type="button" id="btnCreatePlaylist">Criar</button>
+          </div>
+        </div>
+        <div id="musicPlaylistTabs" class="music-playlist-tabs"></div>
+        <div id="musicPlaylistList" class="music-list"></div>
+      </div>
+    </div>
+    <div class="music-panel" style="margin-top:16px;">
+      <h3>Reprodução e som</h3>
+      <div id="musicNowPlaying" class="music-now-playing">Nenhuma música selecionada.</div>
+      <div class="music-controls">
+        <button class="btn btn-primary btn-sm" type="button" id="btnMusicPrev">◀ Anterior</button>
+        <button class="btn btn-primary btn-sm" type="button" id="btnMusicPlay">▶ Tocar</button>
+        <button class="btn btn-primary btn-sm" type="button" id="btnMusicNext">Próxima ▶</button>
+        <label class="check-label">Ordem <select id="musicPlayMode"><option value="ordered">Da ordem da playlist</option><option value="shuffle">Aleatória</option></select></label>
+        <label class="check-label"><input id="musicLoop" type="checkbox"> Repetir playlist</label>
+        <label class="check-label"><input id="musicAutoStart" type="checkbox"> Tocar ao entrar</label>
+        <label class="check-label"><input id="musicRandomStart" type="checkbox"> Aleatória ao entrar</label>
+      </div>
+      <div class="music-settings">
+        <label class="music-range"><span>Músicas</span><input id="musicVolume" type="range" min="0" max="100" value="70"><b id="musicVolumeValue">70%</b></label>
+        <label class="check-label"><input id="musicMuted" type="checkbox"> Mudo para músicas</label>
+        <label class="music-range"><span>Efeitos do sistema</span><input id="effectsVolume" type="range" min="0" max="100" value="70"><b id="effectsVolumeValue">70%</b></label>
+        <label class="check-label"><input id="effectsMuted" type="checkbox"> Mudo para efeitos</label>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="overlay" id="monthEditOverlay">
+  <div class="modal">
+    <h3>Editar mês fechado</h3>
+    <input type="hidden" id="monthEditId">
+    <div class="field"><label>Nome do mês</label><input type="text" id="monthEditLabel" placeholder="Ex: Julho/2026"></div>
+    <div class="field"><label>Início do período</label><input type="date" id="monthEditStart"></div>
+    <div class="field"><label>Fim do período (primeiro dia que já NÃO conta mais)</label><input type="date" id="monthEditEnd"></div>
+    <p style="font-size:11.5px;color:var(--chalk-dim);margin:0 0 4px;">Mudar as datas muda quais rodadas pertencem a este mês — os troféus (MVP/artilheiro/garçom) são recalculados automaticamente a partir delas.</p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" id="btnCancelMonthEdit">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="btnSaveMonthEdit">Salvar</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="overlay" id="playerOverlay">
+  <div class="modal">
+    <h3 id="playerModalTitle">Novo jogador</h3>
+    <input type="hidden" id="playerId">
+    <div class="photo-card-preview-stage" id="photoCardPreviewStage">
+      <h4>Prévia no card</h4>
+      <div id="photoStageContent"><p>A prévia da foto aparecerá aqui enquanto você ajusta o jogador.</p></div>
+      <h4 style="margin-top:18px;">Prévia no mês encerrado</h4>
+      <div id="monthPhotoStageContent"><p>A prévia do mês aparecerá aqui.</p></div>
+      <div class="photo-adjust-placeholder" aria-label="Controles de ajuste da foto">
+        <div class="photo-adjust-heading">Card</div>
+        <label>Zoom <input type="range" id="photoAdjustZoom" min="70" max="160" value="100"></label>
+        <label>Horizontal <input type="range" id="photoAdjustX" min="-35" max="35" value="0"></label>
+        <label>Vertical <input type="range" id="photoAdjustY" min="-25" max="25" value="0"></label>
+        <label>Altura da foto <input type="range" id="photoAdjustHeight" min="0" max="160" value="45"></label>
+        <label>Início do degradê <input type="range" id="photoAdjustFadeStart" min="0" max="100" value="74"></label>
+        <label>Fim do degradê <input type="range" id="photoAdjustFadeEnd" min="0" max="100" value="100"></label>
+        <label>Sombra na foto <input type="range" id="photoAdjustDropShadow" min="0" max="100" value="42"></label>
+        <div class="photo-adjust-preset-actions"><button type="button" class="btn btn-ghost btn-sm" id="btnSaveCardPhotoPreset">💾 Salvar configuração</button><button type="button" class="btn btn-ghost btn-sm" id="btnLoadCardPhotoPreset">📥 Carregar configuração</button></div>
+        <div class="photo-adjust-heading">Mês encerrado</div>
+        <label>Zoom <input type="range" id="monthPhotoAdjustZoom" min="70" max="160" value="100"></label>
+        <label>Horizontal <input type="range" id="monthPhotoAdjustX" min="-35" max="35" value="0"></label>
+        <label>Vertical <input type="range" id="monthPhotoAdjustY" min="-25" max="25" value="0"></label>
+        <label>Altura da foto <input type="range" id="monthPhotoAdjustHeight" min="180" max="480" value="330"></label>
+        <label>Início do degradê <input type="range" id="monthPhotoAdjustFadeStart" min="0" max="100" value="58"></label>
+        <label>Fim do degradê <input type="range" id="monthPhotoAdjustFadeEnd" min="0" max="100" value="100"></label>
+        <label>Sombra na foto <input type="range" id="monthPhotoAdjustDropShadow" min="0" max="100" value="42"></label>
+        <label>Força da sombra do fundo <input type="range" id="monthPhotoAdjustShadow" min="0" max="100" value="86"></label>
+        <div class="photo-adjust-preset-actions"><button type="button" class="btn btn-ghost btn-sm" id="btnSaveMonthPhotoPreset">💾 Salvar configuração</button><button type="button" class="btn btn-ghost btn-sm" id="btnLoadMonthPhotoPreset">📥 Carregar configuração</button></div>
+        <div class="photo-adjust-heading">Bolinha</div>
+        <label>Zoom <input type="range" id="photoCircleZoom" min="70" max="160" value="100"></label>
+        <label>Horizontal <input type="range" id="photoCircleX" min="-35" max="35" value="0"></label>
+        <label>Vertical <input type="range" id="photoCircleY" min="-25" max="25" value="0"></label>
+      </div>
+    </div>
+    <div class="field photo-row">
+      <div class="photo-circle-preview-wrap"><span class="photo-circle-preview-label">Prévia da bolinha</span><div class="photo-preview photo-preview-crop" id="photoPreviewCrop" style="display:none;"><img id="photoPreview" src="" alt="Prévia circular"></div><div class="photo-preview" id="photoFallback" style="display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;color:var(--gold);">?</div></div>
+      <input type="file" id="playerPhoto" accept="image/*">
+      <button type="button" class="btn btn-danger btn-sm" id="btnRemovePlayerPhoto">Remover foto</button>
+      <small style="color:var(--chalk-dim);">PNG ou WebP com fundo transparente aparece recortado no card.</small>
+    </div>
+    <div class="field"><label>Nome completo</label><input type="text" id="playerName" placeholder="Ex: José da Silva"></div>
+    <div class="field"><label>Apelido</label><input type="text" id="playerNick" placeholder="Ex: Zé"></div>
+    <div class="field"><label>Tipo de jogador</label><select id="playerRole"><option value="normal">Jogador normal</option><option value="child">Criança</option><option value="goalkeeper">Goleiro</option><option value="hybrid">Híbrido · linha e goleiro</option></select></div>
+    <label class="field" style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" id="playerCaptain" style="width:auto;"> Capitão do elenco</label>
+    <div class="field admin-only"><label>Estrelas para o sorteio</label><select id="playerTeamStars"><option value="0.5">½ estrela</option><option value="1">1 estrela</option><option value="1.5">1½ estrelas</option><option value="2">2 estrelas</option><option value="2.5">2½ estrelas</option><option value="3">3 estrelas</option><option value="3.5">3½ estrelas</option><option value="4">4 estrelas</option><option value="4.5">4½ estrelas</option><option value="5">5 estrelas</option></select><small style="color:var(--chalk-dim);">Avaliação interna, visível somente para o administrador.</small></div>
+    <div class="field admin-only"><label>OVR manual para o sorteio</label><input type="text" id="playerTeamManualOvr" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="1"><small style="color:var(--chalk-dim);">Valor interno usado somente quando o sorteio por OVR manual estiver selecionado.</small></div>
+    <div class="field" id="lineOverallField"><label id="lineOverallLabel">OVR jogador (automático)</label><input type="text" id="playerOverall" readonly></div>
+    <div class="field" id="goalkeeperOverallField"><label>OVR goleiro (automático)</label><input type="text" id="playerGoalkeeperOverall" readonly></div>
+    <div class="player-attribute-group" id="lineAttributeGroup"><strong>Atributos de linha</strong><div class="player-attribute-fields">
+      <div class="field"><label>Velocidade</label><input type="text" id="attrVelocidade" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Drible</label><input type="text" id="attrDrible" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Finalização</label><input type="text" id="attrChute" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Marcação</label><input type="text" id="attrMarcacao" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Passe</label><input type="text" id="attrPasse" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Físico</label><input type="text" id="attrContato" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+    </div></div>
+    <div class="player-attribute-group" id="goalkeeperAttributeGroup"><strong>Atributos de goleiro</strong><div class="player-attribute-fields">
+      <div class="field"><label>Reflexo</label><input type="text" id="attrReflexo" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Posicionamento</label><input type="text" id="attrPosicionamentoGol" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Um contra um</label><input type="text" id="attrUmContraUm" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Jogo aéreo</label><input type="text" id="attrJogoAereo" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Reposição</label><input type="text" id="attrReposicao" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+      <div class="field"><label>Saída do gol</label><input type="text" id="attrSaidaGol" inputmode="numeric" maxlength="2" pattern="[0-9]{1,2}" data-stat-min="0"></div>
+    </div></div>
+    <div class="modal-actions">
+      <button class="btn btn-danger btn-sm" id="btnDeletePlayer" style="display:none;margin-right:auto;">Remover</button>
+      <button class="btn btn-ghost btn-sm" id="btnCancelPlayer">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="btnSavePlayer">Salvar</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="overlay" id="photoZoomOverlay">
+  <div class="modal photo-zoom-modal">
+    <img id="photoZoomImage" alt="Foto ampliada do jogador">
+  </div>
+</div>
+<div class="overlay" id="playerDetailOverlay">
+  <div class="modal" style="max-width:480px;">
+    <div id="playerDetailHeader" class="pd-summary"></div>
+    <div id="playerDetailRecords"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" id="btnCompareFromDetail">⇄ Comparar este jogador</button>
+      <button class="btn btn-primary btn-sm admin-only is-hidden" id="btnEditFromDetail">Editar jogador</button>
+      <button class="btn btn-ghost btn-sm" id="btnClosePlayerDetail">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="playerComparisonOverlay">
+  <div class="modal comparison-modal">
+    <h3>Comparar jogadores</h3>
+    <div id="playerComparisonContent"></div>
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" id="btnClosePlayerComparison">Fechar</button></div>
+  </div>
+</div>
+
+
+<div class="overlay" id="trophyEditOverlay">
+  <div class="modal" style="max-width:440px;">
+    <h3>Editar troféus</h3>
+    <p class="te-hint">Os valores abaixo somam o que é calculado automaticamente (a partir das rodadas) com qualquer ajuste manual seu. Se você mudar um número aqui, a diferença fica guardada como um ajuste manual — ela não é apagada quando os dados das rodadas mudarem.</p>
+    <div class="te-labels"><span>Jogador</span><span>MVP</span><span>Artilh.</span><span>Garçom</span></div>
+    <div id="trophyEditList"></div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" id="btnCancelTrophyEdit">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="btnSaveTrophyEdits">Salvar</button>
+    </div>
+  </div>
+</div>
+
+
+<div class="overlay" id="confirmOverlay">
+  <div class="modal" style="max-width:340px;text-align:center;">
+    <h3 style="margin-bottom:10px;">Confirmar</h3>
+    <p id="confirmMessage" style="color:var(--chalk-dim);font-size:14px;margin-bottom:20px;"></p>
+    <div class="modal-actions" style="justify-content:center;">
+      <button class="btn btn-ghost btn-sm" id="btnConfirmNo">Cancelar</button>
+      <button class="btn btn-danger btn-sm" id="btnConfirmYes">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="manageRachaOverlay">
+  <div class="modal" style="max-width:560px;">
+    <h3 id="manageRachaTitle">Gerenciar racha</h3>
+    <p style="color:var(--chalk-dim);">Compartilhe este código para uma pessoa entrar como jogador.</p>
+    <div class="tenant-code" id="manageInviteCode">—</div>
+    <div class="modal-actions"><button class="btn btn-ghost btn-sm" id="btnCopyInvite">Copiar convite</button></div>
+    <h3 style="margin-top:22px;">Pessoas e permissões</h3>
+    <div class="tenant-manage-list" id="manageMemberList"></div>
+    <div class="modal-actions"><button class="btn btn-primary btn-sm" id="btnCloseManageRacha">Fechar</button></div>
+  </div>
+</div>
+
+
+<div class="overlay" id="loginOverlay">
+  <div class="modal" style="max-width:360px;">
+    <h3>Entrar como organizador</h3>
+    <div class="field"><label>E-mail</label><input type="text" id="loginEmail" placeholder="seu@email.com"></div>
+    <div class="field"><label>Senha</label><input type="password" id="loginPassword" placeholder="••••••••"></div>
+    <p id="loginError" style="color:var(--coral);font-size:12.5px;display:none;margin:0 0 6px;"></p>
+    <button class="link-btn" id="btnForgotOfficialPassword" type="button">Esqueci minha senha</button>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" id="btnLoginCancel">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="btnLoginSubmit">Entrar</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="changePasswordOverlay">
+  <div class="modal" style="max-width:380px;">
+    <h3>Trocar senha</h3>
+    <p style="color:var(--chalk-dim);font-size:13px;">Confirme sua senha atual e escolha uma nova senha com pelo menos 6 caracteres.</p>
+    <div class="field"><label>Senha atual</label><input type="password" id="currentOfficialPassword" autocomplete="current-password"></div>
+    <div class="field"><label>Nova senha</label><input type="password" id="newOfficialPassword" autocomplete="new-password"></div>
+    <div class="field"><label>Confirmar nova senha</label><input type="password" id="confirmOfficialPassword" autocomplete="new-password"></div>
+    <p id="changePasswordError" style="color:var(--coral);font-size:12.5px;display:none;margin:0 0 6px;"></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" id="btnChangePasswordCancel">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="btnChangePasswordSubmit">Salvar nova senha</button>
+    </div>
+  </div>
+</div>
+
+<div class="overlay" id="resetPasswordOverlay">
+  <div class="modal" style="max-width:380px;">
+    <h3>Recuperar senha</h3>
+    <p style="color:var(--chalk-dim);font-size:13px;">Enviaremos ao seu e-mail o link oficial para criar uma nova senha.</p>
+    <div class="field"><label>E-mail</label><input type="email" id="resetOfficialEmail" autocomplete="email"></div>
+    <p id="resetPasswordError" style="color:var(--coral);font-size:12.5px;display:none;margin:0 0 6px;"></p>
+    <div class="modal-actions">
+      <button class="btn btn-ghost btn-sm" id="btnResetPasswordCancel">Cancelar</button>
+      <button class="btn btn-primary btn-sm" id="btnResetPasswordSubmit">Enviar link</button>
+    </div>
+  </div>
+</div>
+
+
+<script src="vendor/firebase/firebase-app-compat.js"></script>
+<script src="vendor/firebase/firebase-firestore-compat.js"></script>
+<script src="vendor/firebase/firebase-auth-compat.js"></script>
+<script src="vendor/firebase/firebase-storage-compat.js"></script>
+<script src="js/services/firebase-adapter.js?v=7"></script>
+<script src="js/core/app-state.js?v=12"></script>
+<script src="js/features/auth-data.js?v=8"></script>
+<script src="js/features/multi-tenant.js?v=1"></script>
+<script src="js/ui/navigation-music.js?v=7"></script>
+<script src="js/features/players.js?v=17"></script>
+<script src="js/features/rounds.js?v=18"></script>
+<script src="js/core/attendance-final-sync.js?v=7"></script>
+<script src="js/features/rankings-trophies.js?v=15"></script>
+<script src="js/features/records.js?v=20"></script>
+<script src="js/features/months-profile.js?v=19"></script>
+<script src="js/features/backgrounds.js?v=7"></script>
+
+
+<script src="js/core/loading-guard.js?v=7"></script>
+<script src="js/core/pwa-install.js?v=7"></script>
+</body>
+</html>

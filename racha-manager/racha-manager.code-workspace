@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name": "racha-manager",
+			"path": "."
+		},
+		{
+			"name": "assets",
+			"path": "../../racha-manager-mobile-altura-reduzida/racha-manager-organizado/assets"
+		},
+		{
+			"name": "css",
+			"path": "../../racha-manager-mobile-altura-reduzida/racha-manager-organizado/css"
+		},
+		{
+			"name": "js",
+			"path": "../../racha-manager-mobile-altura-reduzida/racha-manager-organizado/js"
+		},
+		{
+			"name": "vendor",
+			"path": "../../racha-manager-mobile-altura-reduzida/racha-manager-organizado/vendor"
+		}
+	],
+	"settings": {}
+}

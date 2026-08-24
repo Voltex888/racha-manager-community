@@ -1,0 +1,279 @@
+  
+  .table-scroll{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  
+  
+  .trophy-ranking-scroll{max-width:720px;}
+  .trophy-ranking-scroll .stat-table{min-width:0;table-layout:fixed;}
+  .trophy-ranking-scroll .stat-table col.rank-pos{width:42px;}
+  .trophy-ranking-scroll .stat-table col.rank-total{width:104px;}
+  .trophy-ranking-scroll .stat-table th:first-child,
+  .trophy-ranking-scroll .stat-table td:first-child{padding-right:2px;white-space:nowrap;}
+  .trophy-ranking-scroll .stat-table th:nth-child(2),
+  .trophy-ranking-scroll .stat-table td:nth-child(2){padding-left:0;}
+  .trophy-ranking-scroll .stat-table th:last-child,
+  .trophy-ranking-scroll .stat-table td:last-child{white-space:nowrap;}
+  .trophy-ranking-scroll .trophy-overall-table{min-width:650px;}
+  
+  .trophy-ranking-scroll .trophy-overall-table col.rank-total{width:108px;}
+  table.stat-table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px;}
+  table.stat-table th{
+    text-align:left;font-family:'JetBrains Mono',monospace;font-size:10.5px;
+    letter-spacing:1px;text-transform:uppercase;color:var(--chalk-dim);
+    padding:8px 6px;border-bottom:2px solid var(--line);cursor:pointer;
+  }
+  table.stat-table td{padding:10px 6px;border-bottom:1px solid var(--line);}
+  
+  table.stat-table th:first-child,
+  table.stat-table td:first-child{width:42px;padding-right:2px;white-space:nowrap;}
+  table.stat-table th:nth-child(2),
+  table.stat-table td:nth-child(2){padding-left:0;}
+  table.stat-table tr:hover td{background:rgba(227,178,60,0.04);}
+  
+  table.stat-table tr.ranking-patent-gold td{background:linear-gradient(90deg,rgba(227,178,60,.13),rgba(227,178,60,.035));border-bottom-color:rgba(227,178,60,.50);}
+  table.stat-table tr.ranking-patent-goat td{background:linear-gradient(90deg,rgba(255,100,20,.18),rgba(255,159,23,.045));border-bottom-color:rgba(255,140,0,.64);}
+  table.stat-table tr.ranking-patent-cosmic td{background:linear-gradient(90deg,rgba(106,17,203,.25),rgba(0,198,255,.08));border-bottom-color:rgba(107,212,255,.68);}
+  table.stat-table tr.ranking-patent-platinum td{background:linear-gradient(90deg,rgba(220,248,255,.18),rgba(103,213,255,.06));border-bottom-color:rgba(174,238,255,.72);}
+  table.stat-table tr.ranking-patent-prismatic td{background:linear-gradient(90deg,rgba(255,121,198,.16),rgba(121,242,161,.08));border-bottom-color:rgba(255,209,102,.66);}
+  table.stat-table tr.ranking-patent-gold td:first-child,table.stat-table tr.ranking-patent-goat td:first-child,table.stat-table tr.ranking-patent-cosmic td:first-child,table.stat-table tr.ranking-patent-platinum td:first-child,table.stat-table tr.ranking-patent-prismatic td:first-child{border-left:2px solid currentColor;}
+  
+  table.stat-table tr.ranking-patent-gold{background:radial-gradient(125% 180% at 0% 100%,rgba(227,178,60,.20),transparent 62%),linear-gradient(160deg,#162817,#0d1b10);}
+  table.stat-table tr.ranking-patent-goat{background:radial-gradient(130% 180% at 0% 100%,rgba(255,61,0,.34),transparent 62%),radial-gradient(100% 140% at 100% 0%,rgba(255,215,0,.16),transparent 55%),linear-gradient(160deg,#1c0f06,#2b1608);}
+  table.stat-table tr.ranking-patent-cosmic{background:radial-gradient(130% 180% at 0% 100%,rgba(106,17,203,.38),transparent 62%),radial-gradient(100% 140% at 100% 0%,rgba(0,198,255,.18),transparent 55%),linear-gradient(160deg,#0a0416,#140a2e);}
+  table.stat-table tr.ranking-patent-platinum{background:radial-gradient(130% 180% at 0% 100%,rgba(103,213,255,.16),transparent 62%),radial-gradient(100% 140% at 100% 0%,rgba(255,255,255,.16),transparent 55%),linear-gradient(160deg,#101a20,#1c2c35);}
+  table.stat-table tr.ranking-patent-prismatic{background:radial-gradient(125% 175% at 0% 100%,rgba(255,192,174,.18),transparent 64%),radial-gradient(105% 125% at 100% 0%,rgba(185,237,198,.12),transparent 58%),linear-gradient(160deg,#1c351f,#102315);}
+  table.stat-table tr.ranking-patent-gold td,table.stat-table tr.ranking-patent-goat td,table.stat-table tr.ranking-patent-cosmic td,table.stat-table tr.ranking-patent-platinum td,table.stat-table tr.ranking-patent-prismatic td{background:transparent !important;border-top:1px solid transparent;border-bottom:1px solid transparent;}
+  table.stat-table tr.ranking-patent-gold td{border-color:rgba(227,178,60,.50);} table.stat-table tr.ranking-patent-goat td{border-color:rgba(255,140,0,.64);} table.stat-table tr.ranking-patent-cosmic td{border-color:rgba(107,212,255,.68);} table.stat-table tr.ranking-patent-platinum td{border-color:rgba(174,238,255,.72);} table.stat-table tr.ranking-patent-prismatic td{border-color:rgba(233,169,188,.68);}
+  table.stat-table tr.ranking-patent-gold td:first-child,table.stat-table tr.ranking-patent-goat td:first-child,table.stat-table tr.ranking-patent-cosmic td:first-child,table.stat-table tr.ranking-patent-platinum td:first-child,table.stat-table tr.ranking-patent-prismatic td:first-child{border-left:1px solid currentColor;border-radius:10px 0 0 10px;}
+  table.stat-table tr.ranking-patent-gold td:last-child,table.stat-table tr.ranking-patent-goat td:last-child,table.stat-table tr.ranking-patent-cosmic td:last-child,table.stat-table tr.ranking-patent-platinum td:last-child,table.stat-table tr.ranking-patent-prismatic td:last-child{border-right:1px solid currentColor;border-radius:0 10px 10px 0;}
+  table.stat-table tr.ranking-patent-gold td:first-child,table.stat-table tr.ranking-patent-gold td:last-child{border-color:rgba(227,178,60,.50);} table.stat-table tr.ranking-patent-goat td:first-child,table.stat-table tr.ranking-patent-goat td:last-child{border-color:rgba(255,140,0,.64);} table.stat-table tr.ranking-patent-cosmic td:first-child,table.stat-table tr.ranking-patent-cosmic td:last-child{border-color:rgba(107,212,255,.68);} table.stat-table tr.ranking-patent-platinum td:first-child,table.stat-table tr.ranking-patent-platinum td:last-child{border-color:rgba(174,238,255,.72);} table.stat-table tr.ranking-patent-prismatic td:first-child,table.stat-table tr.ranking-patent-prismatic td:last-child{border-color:rgba(233,169,188,.68);}
+  
+  table.stat-table{border-collapse:separate;border-spacing:0 2px;}
+  table.stat-table thead th{border-bottom:2px solid var(--line);}
+  table.stat-table tr.ranking-patent-gold{background-size:220% 220%,100% 100%;animation:goatCardEmbersSmall 8s ease-in-out infinite,goldPhotoPulse 2.8s ease-in-out infinite;}
+  table.stat-table tr.ranking-patent-goat{background-size:220% 220%,220% 220%,100% 100%;animation:goatCardEmbers 9s ease-in-out infinite,awardGlowGoat 2.8s ease-in-out infinite;}
+  table.stat-table tr.ranking-patent-cosmic{background-size:220% 220%,220% 220%,100% 100%;animation:goatCardEmbers 9s ease-in-out infinite,awardGlowCosmic 2.6s ease-in-out infinite;}
+  table.stat-table tr.ranking-patent-platinum{background-size:220% 220%,220% 220%,100% 100%;animation:platinumShift 10s ease-in-out infinite,awardGlowPlatinum 2.6s ease-in-out infinite;}
+  table.stat-table tr.ranking-patent-prismatic{background-size:220% 220%,220% 220%,100% 100%;animation:prismaticShift 18s ease-in-out infinite,prismaticSoftGlow 3.2s ease-in-out infinite;}
+  table.stat-table tr.ranking-patent-gold .num{color:#ffe08a;text-shadow:0 0 7px rgba(227,178,60,.32);}
+  table.stat-table tr.ranking-patent-goat .num{color:#ffd27a;text-shadow:0 0 8px rgba(255,140,0,.38);}
+  table.stat-table tr.ranking-patent-cosmic .num{color:#d8c6ff;text-shadow:0 0 8px rgba(107,212,255,.42);}
+  table.stat-table tr.ranking-patent-platinum .num{color:#e9f8ff;text-shadow:0 0 8px rgba(174,238,255,.42);}
+  table.stat-table tr.ranking-patent-prismatic .num{background:linear-gradient(120deg,#f3b7cc,#f1d88c,#b8e7c4,#f3b7cc);background-size:300% 300%;-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:none;animation:prismaticShift 18s ease infinite;}
+  @keyframes rankingPatentSweep{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+  
+  table.stat-table tr.ranking-patent-gold{background-size:260% 100% !important;animation:rankingPatentSweep 7s ease-in-out infinite,goldPhotoPulse 2.8s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-goat{background-size:260% 100%,260% 100%,260% 100% !important;animation:rankingPatentSweep 6s ease-in-out infinite,awardGlowGoat 2.8s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-cosmic{background-size:260% 100%,260% 100%,260% 100% !important;animation:rankingPatentSweep 5.6s ease-in-out infinite,awardGlowCosmic 2.6s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-platinum{background-size:260% 100%,260% 100%,260% 100% !important;animation:rankingPatentSweep 6.4s ease-in-out infinite,awardGlowPlatinum 2.6s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-prismatic{background-size:260% 100%,260% 100%,260% 100% !important;animation:rankingPatentSweep 7.8s ease-in-out infinite,prismaticSoftGlow 3.2s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-prismatic .num{background:none !important;-webkit-background-clip:initial !important;background-clip:initial !important;color:#ffd4e9 !important;text-shadow:0 0 7px rgba(255,160,210,.38),0 0 11px rgba(185,237,198,.18);animation:none !important;}
+  
+  table.stat-table tr.ranking-patent-goat-current{background:linear-gradient(90deg,rgba(255,140,0,.09),transparent 72%);}
+  table.stat-table tr.ranking-patent-goat-current td{background:transparent !important;border-top:1px solid rgba(255,140,0,.62);border-bottom:1px solid rgba(255,140,0,.62);}
+  table.stat-table tr.ranking-patent-goat-current td:first-child{border-left:1px solid rgba(255,140,0,.62);border-radius:10px 0 0 10px;}
+  table.stat-table tr.ranking-patent-goat-current td:last-child{border-right:1px solid rgba(255,140,0,.62);border-radius:0 10px 10px 0;}
+  table.stat-table tr.ranking-patent-goat-current .num{color:#ffd27a;text-shadow:0 0 8px rgba(255,140,0,.38);}
+  
+  table.stat-table tr.ranking-patent-gold-current{background:linear-gradient(90deg,rgba(220,235,245,.10),transparent 72%);}
+  table.stat-table tr.ranking-patent-gold-current td{background:transparent !important;border-top:1px solid rgba(220,235,245,.62);border-bottom:1px solid rgba(220,235,245,.62);}
+  table.stat-table tr.ranking-patent-gold-current td:first-child{border-left:1px solid rgba(220,235,245,.62);border-radius:10px 0 0 10px;}
+  table.stat-table tr.ranking-patent-gold-current td:last-child{border-right:1px solid rgba(220,235,245,.62);border-radius:0 10px 10px 0;}
+  table.stat-table tr.ranking-patent-gold-current .num{color:#eef8ff;text-shadow:0 0 8px rgba(185,215,235,.38);}
+  
+  @keyframes rankingLineAuraGold{0%,100%{filter:drop-shadow(0 0 4px rgba(227,178,60,.18));}50%{filter:drop-shadow(0 0 11px rgba(227,178,60,.44));}}
+  @keyframes rankingLineAuraGoat{0%,100%{filter:drop-shadow(0 0 4px rgba(255,140,0,.20));}50%{filter:drop-shadow(0 0 12px rgba(255,92,0,.50));}}
+  @keyframes rankingLineAuraCosmic{0%,100%{filter:drop-shadow(0 0 4px rgba(107,212,255,.22));}50%{filter:drop-shadow(0 0 12px rgba(160,107,255,.52));}}
+  @keyframes rankingLineAuraPlatinum{0%,100%{filter:drop-shadow(0 0 4px rgba(174,238,255,.20));}50%{filter:drop-shadow(0 0 11px rgba(103,213,255,.44));}}
+  @keyframes rankingLineAuraPrismatic{0%,100%{filter:drop-shadow(0 0 4px rgba(233,169,188,.18));}50%{filter:drop-shadow(0 0 10px rgba(233,169,188,.38));}}
+  @keyframes rankingLineAuraSilver{0%,100%{filter:drop-shadow(0 0 3px rgba(220,235,245,.18));}50%{filter:drop-shadow(0 0 10px rgba(220,235,245,.46));}}
+  table.stat-table tr.ranking-patent-gold{animation:rankingPatentSweep 7s ease-in-out infinite,rankingLineAuraGold 2.8s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-goat{animation:rankingPatentSweep 6s ease-in-out infinite,rankingLineAuraGoat 2.8s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-cosmic{animation:rankingPatentSweep 5.6s ease-in-out infinite,rankingLineAuraCosmic 2.6s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-platinum{animation:rankingPatentSweep 6.4s ease-in-out infinite,rankingLineAuraPlatinum 2.6s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-prismatic{animation:rankingPatentSweep 7.8s ease-in-out infinite,rankingLineAuraPrismatic 3.2s ease-in-out infinite !important;}
+  table.stat-table tr.ranking-patent-goat-current{animation:rankingLineAuraGoat 2.8s ease-in-out infinite;}
+  table.stat-table tr.ranking-patent-gold-current{animation:rankingLineAuraSilver 2.4s ease-in-out infinite;}
+  .name-cell{display:flex;align-items:center;gap:10px;}
+  .name-cell img,.name-cell .ph-fb{width:30px;height:30px;border-radius:50%;object-fit:cover;}
+  .num{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--gold);}
+  .table-title{
+    font-family:'Anton',sans-serif;font-size:15px;text-transform:uppercase;letter-spacing:0.4px;
+    color:var(--gold);margin:26px 0 10px;
+  }
+  .table-title:first-child{margin-top:0;}
+
+  
+  .record-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;}
+  .record-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;}
+  .record-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:var(--chalk-dim);margin-bottom:8px;min-height:24px;}
+  .record-value{font-family:'Anton',sans-serif;font-size:24px;color:var(--gold);}
+  .record-value small{font-family:'Barlow',sans-serif;font-weight:600;font-size:12px;color:var(--chalk-dim);margin-left:4px;}
+  .record-player{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;}
+  .record-player img,.record-player .ph-fb{width:22px;height:22px;border-radius:50%;object-fit:cover;font-size:10px;}
+  .record-context{font-size:11px;color:var(--chalk-dim);margin-top:4px;}
+  .record-card.record-empty{color:var(--chalk-dim);font-size:12px;}
+  .collective-team-record{display:flex;flex-direction:column;gap:8px;}
+  .collective-team-record-list{display:grid;gap:10px;margin-top:4px;}
+  .collective-record-team{min-height:0;margin:0;padding:11px;}
+  .collective-record-team .saved-team-total{margin-top:10px;}
+  .collective-record-team .team-substitute-pool{margin-top:10px;}
+  .record-tie-note{font-size:10.5px;color:var(--sky);margin-top:8px;font-family:'JetBrains Mono',monospace;}
+  .record-card:has(.record-tie-note){cursor:pointer;}
+  .record-card:has(.record-tie-note) .record-tie-note::after{content:' · clique para ver cada conquista';color:var(--chalk-dim);}
+  .record-card:has(.record-tie-note) .record-holders{display:none;}
+  .record-card.show-tie-details .record-holders{display:flex;}
+  .record-holders{margin-top:10px;display:flex;flex-direction:column;gap:10px;}
+  .record-holder{padding-top:8px;border-top:1px dashed var(--line);}
+  .record-holder:first-child{padding-top:0;border-top:none;}
+  .record-rank{display:inline-flex;align-items:center;gap:4px;margin-left:7px;padding:2px 6px;border-radius:999px;font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:800;letter-spacing:.35px;vertical-align:middle;background:rgba(255,204,0,.14);color:var(--gold);}
+  .record-rank.tier-goat{background:rgba(255,106,0,.16);color:#ff9b42;}
+  .record-rank.tier-cosmic{background:rgba(136,80,255,.18);color:#d8c6ff;}
+  .record-rank.tier-platinum{background:rgba(158,228,255,.16);color:#aeeeff;}
+  .record-rank.tier-prismatic{background:rgba(255,104,214,.14);color:#ffb2e6;}
+  .record-achievement-row{padding:10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.018);}
+  .record-achievement-row + .record-achievement-row{margin-top:8px;}
+  .record-achievement-row.tier-normal{border-color:rgba(255,204,0,.34);background:linear-gradient(115deg,rgba(255,204,0,.11),rgba(255,255,255,.018));}
+  .record-achievement-row.tier-mvp,.record-achievement-row.tier-artilheiro,.record-achievement-row.tier-garcom{border-color:rgba(227,178,60,.62);background:linear-gradient(115deg,rgba(227,178,60,.20),rgba(255,224,138,.055));box-shadow:inset 0 0 14px rgba(227,178,60,.07);}
+  .record-achievement-row.tier-goat{border-color:rgba(255,132,39,.55);background:linear-gradient(115deg,rgba(255,89,0,.18),rgba(255,180,0,.055));}
+  .record-achievement-row.tier-cosmic{border-color:rgba(164,123,255,.72);background:linear-gradient(115deg,rgba(84,50,210,.30),rgba(31,148,255,.13));box-shadow:inset 0 0 18px rgba(144,102,255,.10);}
+  .record-achievement-row.tier-platinum{border-color:rgba(147,226,255,.68);background:linear-gradient(115deg,rgba(59,178,232,.18),rgba(181,244,255,.08));}
+  .record-achievement-row.tier-prismatic{border-color:rgba(255,130,222,.6);background:linear-gradient(115deg,rgba(255,75,194,.16),rgba(106,106,255,.12));}
+  .record-card.record-card-title{border:1px solid transparent;background:radial-gradient(145% 120% at 10% 120%,rgba(227,178,60,.22),transparent 60%),linear-gradient(160deg,#162817,#0d1b10) padding-box,linear-gradient(120deg,#b67a12,#ffe08a,#e3b23c,#fff0ac,#b67a12) border-box;background-size:220% 220%,100% 100%,300% 300%;animation:goatCardEmbersSmall 8s ease-in-out infinite,awardGlow 2.8s ease-in-out infinite;}
+  .record-card.record-card-title .record-value{background:linear-gradient(120deg,#ffe08a,#e3b23c,#fff0ac,#b67a12);background-size:300% 300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:reignShift 4s ease infinite;}
+  .record-card.record-card-title .record-value small,.record-card.record-card-title .record-label{color:#e8d5a3;}
+  .title-record-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:800;letter-spacing:.3px;color:#261706;background:linear-gradient(120deg,#ffe08a,#e3b23c,#fff0ac);background-size:300% 300%;animation:reignShift 4s ease infinite;}
+  .record-achievement-name{display:flex;align-items:center;flex-wrap:wrap;gap:7px;color:var(--chalk);font-size:13px;font-weight:700;}
+  .record-achievement-name .name-cell{gap:7px;}
+  .record-achievement-name .record-rank{margin-left:0;}
+  .record-achievement-context{margin:5px 0 0 30px;color:var(--chalk-dim);font-size:12px;}
+  .record-achievement-context b{color:var(--chalk);font-weight:700;}
+  .month-winner-card{margin-top:8px;padding:9px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.018);}
+  .month-winner-card .mini-row{padding:0;border-bottom:none;}
+  .month-winner-card.patent-gold{border-color:rgba(227,178,60,.62);background:linear-gradient(115deg,rgba(227,178,60,.12),rgba(18,45,27,.76));box-shadow:inset 0 0 16px rgba(227,178,60,.05),0 0 10px rgba(227,178,60,.10);animation:playerReignGlow 2.8s ease-in-out infinite;}
+  .month-winner-card.patent-gold .mini-row b{color:#ffe08a;}
+  .month-winner-card.patent-goat{border-color:rgba(255,140,0,.66);background:linear-gradient(115deg,rgba(255,89,0,.13),rgba(42,22,8,.82));box-shadow:inset 0 0 16px rgba(255,140,0,.06),0 0 11px rgba(255,89,0,.12);animation:awardGlowGoat 2.8s ease-in-out infinite;}
+  .month-winner-card.patent-goat .mini-row b{color:#ffd27a;}
+  .month-winner-card.patent-cosmic{border-color:rgba(107,212,255,.68);background:linear-gradient(115deg,rgba(106,17,203,.20),rgba(10,4,22,.86));box-shadow:inset 0 0 16px rgba(107,212,255,.06),0 0 12px rgba(160,107,255,.16);animation:awardGlowCosmic 2.6s ease-in-out infinite;}
+  .month-winner-card.patent-cosmic .mini-row b{color:#d8c6ff;}
+  .month-winner-card.patent-platinum{border-color:rgba(174,238,255,.66);background:linear-gradient(115deg,rgba(103,213,255,.13),rgba(17,34,42,.80));box-shadow:inset 0 0 16px rgba(255,255,255,.06),0 0 11px rgba(103,213,255,.12);animation:awardGlowPlatinum 2.6s ease-in-out infinite;}
+  .month-winner-card.patent-platinum .mini-row b{color:#e9f8ff;}
+  .month-winner-card .round-records{margin:9px 0 0;}
+  .round-player-result{padding:8px 10px;border:1px solid var(--line);border-radius:10px;background:rgba(255,255,255,.018);}
+  .round-player-result + .round-player-result{margin-top:7px;}
+  .round-player-result .mini-row{padding:0;border-bottom:none;}
+  .round-player-result .round-records{margin:8px 0 0;}
+  .round-player-result.tier-goat{border-color:rgba(255,132,39,.55);background:linear-gradient(115deg,rgba(255,89,0,.16),rgba(255,180,0,.05));}
+  .round-player-result.tier-cosmic{border-color:rgba(164,123,255,.72);background:linear-gradient(115deg,rgba(84,50,210,.28),rgba(31,148,255,.12));}
+  .round-player-result.tier-platinum{border-color:rgba(147,226,255,.68);background:linear-gradient(115deg,rgba(59,178,232,.18),rgba(181,244,255,.08));}
+  .round-player-result.tier-prismatic{border-color:rgba(255,130,222,.6);background:linear-gradient(115deg,rgba(255,75,194,.14),rgba(106,106,255,.10));}
+  .round-player-result.absence-yellow{border-color:rgba(255,209,64,.72);background:linear-gradient(115deg,rgba(227,178,60,.18),rgba(255,209,64,.05));box-shadow:0 0 10px rgba(227,178,60,.12);}
+  .round-player-result.absence-red{border-color:rgba(255,91,76,.78);background:linear-gradient(115deg,rgba(239,84,68,.18),rgba(255,100,80,.05));box-shadow:0 0 11px rgba(239,84,68,.16);}
+  .round-player-result.patent-gold{border:1px solid transparent;background:radial-gradient(145% 140% at 0% 110%,rgba(227,178,60,.22),transparent 62%),linear-gradient(160deg,#162817,#0d1b10) padding-box,linear-gradient(120deg,#b67a12,#ffe08a,#e3b23c,#fff0ac,#b67a12) border-box;background-size:220% 220%,100% 100%,300% 300%;animation:goatCardEmbersSmall 8s ease-in-out infinite,playerReignGlow 2.8s ease-in-out infinite;}
+  .round-player-result.patent-goat{border:1px solid transparent;background:radial-gradient(140% 150% at 0% 110%,rgba(255,61,0,.38),transparent 62%),linear-gradient(160deg,#1c0f06,#2b1608) padding-box,linear-gradient(120deg,#ffd700,#ff8c00,#ff3d00,#ffd700) border-box;background-size:220% 220%,100% 100%,300% 300%;animation:goatCardEmbersSmall 8s ease-in-out infinite,awardGlowGoat 2.8s ease-in-out infinite;}
+  .round-player-result.patent-cosmic{border:1px solid transparent;background:radial-gradient(140% 150% at 0% 110%,rgba(106,17,203,.42),transparent 62%),linear-gradient(160deg,#0a0416,#140a2e) padding-box,linear-gradient(120deg,#6a11cb,#00c6ff,#ff00c8,#6a11cb) border-box;background-size:220% 220%,100% 100%,300% 300%;animation:goatCardEmbersSmall 8s ease-in-out infinite,awardGlowCosmic 2.6s ease-in-out infinite;}
+  .round-player-result.patent-platinum{border:1px solid transparent;background:radial-gradient(140% 150% at 0% 110%,rgba(255,255,255,.22),transparent 62%),linear-gradient(160deg,var(--card-2),var(--card)) padding-box,linear-gradient(120deg,#dfe6ea,#ffffff,#9fb0bb,#ffffff,#dfe6ea) border-box;background-size:220% 220%,100% 100%,300% 300%;animation:goatCardEmbersSmall 8s ease-in-out infinite,awardGlowPlatinum 2.6s ease-in-out infinite;}
+  .entry-row.is-cosmic{border:1px solid transparent;border-radius:9px;padding-left:6px;background:radial-gradient(130% 180% at 0% 100%,rgba(106,17,203,.40),transparent 62%),radial-gradient(100% 140% at 100% 0%,rgba(0,198,255,.20),transparent 55%),linear-gradient(160deg,#0a0416,#140a2e) padding-box,linear-gradient(120deg,#6a11cb,#00c6ff,#ff00c8,#6a11cb) border-box;background-size:220% 220%,220% 220%,100% 100%,300% 300%;box-shadow:0 0 16px rgba(160,107,255,.18);animation:goatCardEmbers 9s ease-in-out infinite,awardGlowCosmic 2.6s ease-in-out infinite;}
+  .entry-row.is-platinum{border:1px solid transparent;border-radius:9px;padding-left:6px;background:radial-gradient(130% 180% at 0% 100%,rgba(255,255,255,.25),transparent 62%),radial-gradient(100% 140% at 100% 0%,rgba(103,213,255,.20),transparent 55%),linear-gradient(160deg,var(--card-2),var(--card)) padding-box,linear-gradient(120deg,#dfe6ea,#ffffff,#9fb0bb,#ffffff,#dfe6ea) border-box;background-size:220% 220%,220% 220%,100% 100%,300% 300%;box-shadow:0 0 16px rgba(103,213,255,.15);animation:goatCardEmbers 9s ease-in-out infinite,awardGlowPlatinum 2.6s ease-in-out infinite;}
+  .entry-row.is-cosmic .ename.has-watermark::after{color:rgba(160,107,255,.82);}
+  .entry-row.is-platinum .ename.has-watermark::after{color:rgba(174,238,255,.84);}
+  .entry-cosmic-tag{font-size:10px;color:#bda2ff;font-family:'JetBrains Mono',monospace;font-weight:800;}
+  .entry-platinum-tag{font-size:10px;color:#aeeeff;font-family:'JetBrains Mono',monospace;font-weight:800;}
+  .player-card.is-goat .badge-photo,.player-card.is-goat .badge-fallback,.player-card.is-goat-contender .badge-photo,.player-card.is-goat-contender .badge-fallback,.entry-row.is-goat img,.entry-row.is-goat .ph-fb{border:2px solid #ff8c00;box-shadow:0 0 8px rgba(255,140,0,.55),0 0 18px rgba(255,61,0,.28);animation:goatPhotoPulse 2.8s ease-in-out infinite;}
+  .player-card.is-cosmic .badge-photo,.player-card.is-cosmic .badge-fallback,.entry-row.is-cosmic img,.entry-row.is-cosmic .ph-fb{border:2px solid #6bd4ff;box-shadow:0 0 8px rgba(107,212,255,.60),0 0 20px rgba(160,107,255,.35);animation:cosmicPhotoPulse 2.6s ease-in-out infinite;}
+  .player-card.is-platinum .badge-photo,.player-card.is-platinum .badge-fallback,.entry-row.is-platinum img,.entry-row.is-platinum .ph-fb{border:2px solid #aeeeff;box-shadow:0 0 8px rgba(174,238,255,.60),0 0 18px rgba(103,213,255,.26);animation:platinumPhotoPulse 2.8s ease-in-out infinite;}
+  .entry-row.is-reigning input,.entry-row.is-goat input,.entry-row.is-cosmic input,.entry-row.is-platinum input{border-width:1px;}
+  .entry-row.is-reigning input{border-color:#e3b23c;background:linear-gradient(145deg,rgba(227,178,60,.18),rgba(255,224,138,.07));box-shadow:0 0 9px rgba(227,178,60,.18);animation:goldPhotoPulse 2.8s ease-in-out infinite;}
+  .entry-row.is-goat input{border-color:#ff8c00;background:rgba(255,95,0,.10);animation:goatPhotoPulse 2.8s ease-in-out infinite;}.entry-row.is-cosmic input{border-color:#6bd4ff;background:rgba(106,17,203,.15);animation:cosmicPhotoPulse 2.6s ease-in-out infinite;}.entry-row.is-platinum input{border-color:#aeeeff;background:rgba(103,213,255,.10);animation:platinumPhotoPulse 2.8s ease-in-out infinite;}
+  @keyframes goatPhotoPulse{0%,100%{box-shadow:0 0 8px rgba(255,140,0,.55),0 0 18px rgba(255,61,0,.28)}50%{box-shadow:0 0 14px rgba(255,215,0,.82),0 0 28px rgba(255,61,0,.52)}}
+  @keyframes cosmicPhotoPulse{0%,100%{box-shadow:0 0 8px rgba(107,212,255,.60),0 0 20px rgba(160,107,255,.35)}50%{box-shadow:0 0 15px rgba(255,107,203,.68),0 0 30px rgba(107,212,255,.52)}}
+  @keyframes platinumPhotoPulse{0%,100%{box-shadow:0 0 8px rgba(174,238,255,.60),0 0 18px rgba(103,213,255,.26)}50%{box-shadow:0 0 14px rgba(255,255,255,.82),0 0 28px rgba(103,213,255,.46)}}
+  @keyframes goldPhotoPulse{0%,100%{box-shadow:0 0 7px rgba(227,178,60,.48),0 0 16px rgba(227,178,60,.20)}50%{box-shadow:0 0 13px rgba(255,224,138,.75),0 0 25px rgba(227,178,60,.42)}}
+  .cosmic-block{position:relative;overflow:hidden;border:1px solid transparent;border-radius:14px;padding:16px;margin-bottom:14px;background:radial-gradient(135% 150% at 8% 120%,rgba(106,17,203,.58),transparent 57%),radial-gradient(110% 130% at 92% -15%,rgba(0,198,255,.32),transparent 55%),linear-gradient(160deg,#0a0416,#140a2e) padding-box,linear-gradient(120deg,#6a11cb,#00c6ff,#ff00c8,#6a11cb) border-box;background-size:220% 220%,220% 220%,100% 100%,300% 300%;animation:cosmicDrift 12s ease-in-out infinite,awardGlowCosmic 2.6s ease-in-out infinite;}
+  .cosmic-block .current-title-name{background:linear-gradient(120deg,#a06bff,#6bd4ff,#ff6bcb);background-size:300% 300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:cosmicDrift 10s ease-in-out infinite;}
+  .platinum-block{position:relative;overflow:hidden;border:1px solid transparent;border-radius:14px;padding:16px;margin-bottom:14px;background:radial-gradient(130% 150% at 8% 120%,rgba(103,213,255,.28),transparent 58%),radial-gradient(100% 130% at 92% -15%,rgba(255,255,255,.26),transparent 54%),linear-gradient(160deg,#101a20,#1c2c35) padding-box,linear-gradient(120deg,#dfe6ea,#ffffff,#9fb0bb,#ffffff,#dfe6ea) border-box;background-size:220% 220%,220% 220%,100% 100%,300% 300%;animation:platinumShift 10s ease-in-out infinite,awardGlowPlatinum 2.6s ease-in-out infinite;}
+  .platinum-block .current-title-name{background:linear-gradient(120deg,#dfe6ea,#ffffff,#9fb0bb);background-size:300% 300%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:platinumShift 10s ease infinite;}
+
+  
+  .record-grid-lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
+  .record-card-lg{padding:22px 20px;border-width:1px;}
+  .record-card-lg .record-label{font-size:12px;letter-spacing:1px;min-height:auto;margin-bottom:12px;}
+  .record-card-lg .record-value{font-size:36px;}
+  .record-card-lg .record-value small{font-size:13px;}
+  .record-card-lg .record-player{font-size:15px;}
+  .record-card-lg .record-player img,.record-card-lg .record-player .ph-fb{width:26px;height:26px;font-size:11px;}
+  .record-card-lg .record-context{font-size:12px;}
+
+  
+  .record-card.record-racha,
+  .record-card.record-card-gold{
+    position:relative;overflow:hidden;border:1px solid transparent;
+    background:radial-gradient(125% 100% at 10% 110%,rgba(227,178,60,.24),transparent 60%),linear-gradient(155deg,#1b301d 0%,#102014 100%) padding-box,linear-gradient(120deg,#a66f13,#ffe08a,#e3b23c,#fff0ac,#a66f13) border-box;
+    background-size:100% 100%,100% 100%,280% 280%;
+    animation:goldRecordShift 9s ease-in-out infinite,awardGlow 2.8s ease-in-out infinite;
+  }
+  .record-card.record-racha .record-value,.record-card.record-card-gold .record-value{background:linear-gradient(120deg,#ffe08a,#e3b23c,#fff0ac,#b67a12);background-size:280% 280%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:reignShift 4s ease infinite;}
+  .record-card.record-racha .record-label,.record-card.record-card-gold .record-label{color:#e8d5a3;}
+  @keyframes goldRecordShift{0%,100%{background-position:0 0,0 0,0% 50%;}50%{background-position:0 0,0 0,100% 50%;}}
+  
+  .record-card.record-card-geral{border-color:var(--gold);animation: awardGlow 2.8s ease-in-out infinite;}
+  .racha-badge{
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.3px;
+    color:var(--bg);background:var(--gold);display:inline-block;padding:3px 7px;
+    border-radius:6px;margin-bottom:8px;font-weight:700;
+  }
+  .racha-record-banner{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;}
+  .racha-record-chip{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;
+    background:var(--card-2);border:1px solid var(--gold);color:var(--gold);
+    padding:6px 10px;border-radius:20px;font-weight:600;
+  }
+
+  
+  .record-card.record-card-prismatic{
+    position:relative;
+    border:1px solid transparent;
+    background:
+      radial-gradient(140% 155% at 0% 115%,rgba(255,163,139,.28),transparent 70%),
+      radial-gradient(115% 140% at 100% -16%,rgba(174,239,195,.20),transparent 64%),
+      linear-gradient(160deg,#66505a,#3f6659) padding-box,
+      linear-gradient(120deg,#ffc0ae,#ffe3a3,#b9edc6,#ffd2bd,#ffc0ae) border-box;
+    background-size:220% 220%,220% 220%,100% 100%,300% 300%;
+    animation: goatCardEmbers 9s ease-in-out infinite, prismaticShift 18s ease-in-out infinite, awardGlowPrismatic 2.8s ease-in-out infinite;
+    overflow:hidden;
+  }
+  .record-card.record-card-prismatic.record-card-geral{border-color:transparent;}
+  .record-card.record-card-prismatic::after{
+    content:"";
+    position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(115deg, transparent 35%, rgba(255,255,255,0.22) 48%, transparent 62%);
+    background-size:260% 260%;
+    animation: prismaticShine 18s ease-in-out infinite;
+  }
+  .record-card.record-card-prismatic .record-value{
+    background:linear-gradient(120deg,#ff6bcb,#ffd76b,#6bffb8,#6bd4ff,#b26bff);
+    background-size:300% 300%;
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    animation: prismaticShift 18s ease-in-out infinite;
+  }
+  .prismatic-badge{
+    position:relative;z-index:1;
+    font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:0.4px;
+    display:inline-block;padding:3px 8px;border-radius:6px;margin-bottom:8px;font-weight:700;
+    color:#12081a;
+    background:linear-gradient(120deg,#ff6bcb,#ffd76b,#6bffb8,#6bd4ff,#b26bff);
+    background-size:300% 300%;
+    animation: prismaticShift 18s ease-in-out infinite;
+  }
+  @keyframes prismaticShift{
+    0%{background-position:0% 0%, 260% 260%;}
+    50%{background-position:0% 0%, -90% -90%;}
+    100%{background-position:0% 0%, 260% 260%;}
+  }
+  @keyframes prismaticShine{
+    0%{background-position:220% 220%;}
+    50%{background-position:-60% -60%;}
+    100%{background-position:220% 220%;}
+  }
+
+
+
