@@ -1,10 +1,10 @@
 const firebaseConfig = {
-  apiKey: "AIzaSyDkUQRBzkjYtdQbx9UOa7qxbLX1k1fpt80",
-  authDomain: "racha-manager-9969d.firebaseapp.com",
-  projectId: "racha-manager-9969d",
-  storageBucket: "racha-manager-9969d.firebasestorage.app",
-  messagingSenderId: "509752435125",
-  appId: "1:509752435125:web:6708fe47697794c8f839fc"
+  apiKey: "AIzaSyBrLz6l4tnozfihEZWPxKIBzCMKZ2nOC7s",
+  authDomain: "racha-manager-comunidade.firebaseapp.com",
+  projectId: "racha-manager-comunidade",
+  storageBucket: "racha-manager-comunidade.firebasestorage.app",
+  messagingSenderId: "753411333157",
+  appId: "1:753411333157:web:736c788be9ed84184bf3cc"
 };
 
 const SUPABASE_URL = "https://moesysxjujftdhetmmfe.supabase.co";
